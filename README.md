@@ -1,5 +1,5 @@
 # YouChef5.0
-Ora l'applicazione è strutturata nel seguente modo:
+Ora l'applicazione è strutturata nel seguente modo:\n
 1)Scelta tra eseguiRicetta, usaSoloTimereTemperature e aggiungiRicetta
 2)aggiungiRicetta: campi da compilare nel formato specificato permettono agli utenti di inserire direttamente nel database le ricette, queste verranno comunque spuntate con l'attributo ricettaUfficiale=0, mentre quelle inserite da noi e certificate sono =1
 3)usaSoloTimereTemperature: mostra la tabella con le temperature misurate e i timer inseribili (utile per chi conosce già le ricette e bvuole solo controllare tempi e temperature)
