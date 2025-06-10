@@ -75,13 +75,13 @@ function addStep() {
     const stepDiv = document.createElement("div");
     stepDiv.innerHTML = `
         <h4>Passaggio ${stepCount}</h4>
-        <label>Descrizione:</label><input name="passaggi[${stepCount}][descrizione]" required placeholder="Inserire descrizione precisa del passaggio da eseguire"><br>
-        <label>Ordine:</label><input type="number" name="passaggi[${stepCount}][ordine]" required placeholder="Sarà l'ordine con cui verranno visualizzati i passaggi inseriti"><br>
+        <label>Descrizione:</label><input name="passaggi[${stepCount}][descrizione]" required placeholder="Inserire descrizione precisa"><br>
+        <label>Ordine:</label><input type="number" name="passaggi[${stepCount}][ordine]" required placeholder="ordine passaggi della ricetta inserita"><br>
         <label>Tempo (min):</label><input type="number" name="passaggi[${stepCount}][tempo]" placeholder="timer da inserire nel passaggio, 0 se non necessario"><br>
-        <label>Temperatura min 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="temperatura minima del sensore 1 richiesta per il passaggio, 0 se non necessario"><br>
-        <label>Temperatura max 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="temperatura massima del sensore 1 richiesta per il passaggio, 0 se non necessario"><br>
-        <label>Temperatura min 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="temperatura minima del sensore 2 richiesta per il passaggio, 0 se non necessario"><br>
-        <label>Temperatura max 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="temperatura massima del sensore 2 richiesta per il passaggio, 0 se non necessario"><br>
+        <label>Temperatura min 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="T(°C) min sensore1, 0 se non necessario"><br>
+        <label>Temperatura max 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="T(°C) max sensore1, 0 se non necessario"><br>
+        <label>Temperatura min 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="T(°C) min sensore2, 0 se non necessario"><br>
+        <label>Temperatura max 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="T(°C) max sensore2, 0 se non necessario"><br>
         <label>Timer richiesto:</label>
         <select name="passaggi[${stepCount}][timerRichiesto]">
             <option value="0">No</option>
@@ -93,29 +93,30 @@ function addStep() {
 </script>
 </head>
 <body>
+<div class="card">
+    <h1>Aggiungi una Nuova Ricetta</h1>
+    <h2>Aggiungi Ricetta</h2>
+    <p></p>
+    <?php if(!empty($error)): ?>
+        <div style="color:red;"><?= $error ?></div>
+    <?php endif; ?>
 
-<h2>Aggiungi Ricetta</h2>
+    <?php if(!empty($success)): ?>
+        <div style="color:green;"><?= $success ?></div>
+    <?php endif; ?>
 
-<?php if(!empty($error)): ?>
-    <div style="color:red;"><?= $error ?></div>
-<?php endif; ?>
+    <form method="post">
+        <label>Nome:</label><input type="text" name="nome" required placeholder="es.: pasta alla norma"><br>
+        <label>Categoria:</label><input type="text" name="categoria" required placeholder="es.: primo, secondo, contorno"><br>
+        <label>Tempo Stimato (minuti):</label><input type="number" name="tempoStimato" required placeholder="es.: 30"><br>
+        <label>Ingredienti:</label><input type="text" name="ingredienti" required placeholder="es.: Pollo(800 g) - rosmarino() - olio extravergine di oliva(30 g) - sale()"><br>
 
-<?php if(!empty($success)): ?>
-    <div style="color:green;"><?= $success ?></div>
-<?php endif; ?>
+        <h3>Passaggi</h3>
+        <div id="stepsContainer"></div>
+        <button type="button" onclick="addStep()">Aggiungi Passaggio</button><br><br>
 
-<form method="post">
-    <label>Nome:</label><input type="text" name="nome" required placeholder="Inserisci il nome della ricetta"><br>
-    <label>Categoria:</label><input type="text" name="categoria" required placeholder="Inserisci la categoria della ricetta (es.: primo, secondo, contorno)"><br>
-    <label>Tempo Stimato (minuti):</label><input type="number" name="tempoStimato" required placeholder="Inserisci una stima temporale di completamento della ricetta"><br>
-    <label>Ingredienti:</label><input type="text" name="ingredienti" required placeholder="Inserire ingredienti nel seguente formato di esempio: Pollo(800 g) - rosmarino() - olio extravergine di oliva(30 g) - sale()"><br>
-
-    <h3>Passaggi</h3>
-    <div id="stepsContainer"></div>
-    <button type="button" onclick="addStep()">Aggiungi Passaggio</button><br><br>
-
-    <button type="submit">Salva Ricetta</button>
-</form>
-
+        <button type="submit">Salva Ricetta</button>
+    </form>
+</div>
 </body>
 </html>
