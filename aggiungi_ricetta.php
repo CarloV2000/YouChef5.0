@@ -65,58 +65,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<title>Aggiungi Ricetta</title>
-<script>
-let stepCount = 0;
-function addStep() {
-    stepCount++;
-    const container = document.getElementById("stepsContainer");
-    const stepDiv = document.createElement("div");
-    stepDiv.innerHTML = `
-        <h4>Passaggio ${stepCount}</h4>
-        <label>Descrizione:</label><input name="passaggi[${stepCount}][descrizione]" required placeholder="Inserire descrizione precisa"><br>
-        <label>Ordine:</label><input type="number" name="passaggi[${stepCount}][ordine]" required placeholder="ordine passaggi della ricetta inserita"><br>
-        <label>Tempo (min):</label><input type="number" name="passaggi[${stepCount}][tempo]" placeholder="timer da inserire nel passaggio, 0 se non necessario"><br>
-        <label>Temperatura min 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="T(°C) min sensore1, 0 se non necessario"><br>
-        <label>Temperatura max 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="T(°C) max sensore1, 0 se non necessario"><br>
-        <label>Temperatura min 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="T(°C) min sensore2, 0 se non necessario"><br>
-        <label>Temperatura max 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="T(°C) max sensore2, 0 se non necessario"><br>
-        <label>Timer richiesto:</label>
-        <select name="passaggi[${stepCount}][timerRichiesto]">
-            <option value="0">No</option>
-            <option value="1">Sì</option>
-        </select><br><br>
-    `;
-    container.appendChild(stepDiv);
-}
-</script>
+    <meta charset="UTF-8" />
+    <title>Aggiungi Ricetta</title>
+    <script>
+        let stepCount = 0;
+        function addStep() {
+            stepCount++;
+            const container = document.getElementById("stepsContainer");
+            const stepDiv = document.createElement("div");
+            stepDiv.innerHTML = `
+                <h4>Passaggio ${stepCount}</h4>
+                <label>Descrizione:</label><input name="passaggi[${stepCount}][descrizione]" required placeholder="Inserire descrizione precisa"><br>
+                <label>Ordine:</label><input type="number" name="passaggi[${stepCount}][ordine]" required placeholder="ordine passaggi della ricetta inserita"><br>
+                <label>Tempo (min):</label><input type="number" name="passaggi[${stepCount}][tempo]" placeholder="timer da inserire nel passaggio, 0 se non necessario"><br>
+                <label>Temperatura min 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="T(°C) min sensore1, 0 se non necessario"><br>
+                <label>Temperatura max 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="T(°C) max sensore1, 0 se non necessario"><br>
+                <label>Temperatura min 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="T(°C) min sensore2, 0 se non necessario"><br>
+                <label>Temperatura max 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="T(°C) max sensore2, 0 se non necessario"><br>
+                <label>Timer richiesto:</label>
+                <select name="passaggi[${stepCount}][timerRichiesto]">
+                    <option value="0">No</option>
+                    <option value="1">Sì</option>
+                </select><br><br>
+            `;
+            container.appendChild(stepDiv);
+        }
+    </script>
 </head>
 <body>
-<div class="card">
-    <h1>Aggiungi una Nuova Ricetta</h1>
-    <h2>Aggiungi Ricetta</h2>
-    <p></p>
-    <?php if(!empty($error)): ?>
-        <div style="color:red;"><?= $error ?></div>
-    <?php endif; ?>
+    <div class="card">
+        <h1>Aggiungi una Nuova Ricetta</h1>
+        <h2>Aggiungi Ricetta</h2>
+        <?php if(!empty($error)): ?>
+            <div style="color:red;"><?= $error ?></div>
+        <?php endif; ?>
 
-    <?php if(!empty($success)): ?>
-        <div style="color:green;"><?= $success ?></div>
-    <?php endif; ?>
+        <?php if(!empty($success)): ?>
+            <div style="color:green;"><?= $success ?></div>
+        <?php endif; ?>
 
-    <form method="post">
-        <label>Nome:</label><input type="text" name="nome" required placeholder="es.: pasta alla norma"><br>
-        <label>Categoria:</label><input type="text" name="categoria" required placeholder="es.: primo, secondo, contorno"><br>
-        <label>Tempo Stimato (minuti):</label><input type="number" name="tempoStimato" required placeholder="es.: 30"><br>
-        <label>Ingredienti:</label><input type="text" name="ingredienti" required placeholder="es.: Pollo(800 g) - rosmarino() - olio extravergine di oliva(30 g) - sale()"><br>
-
-        <h3>Passaggi</h3>
-        <div id="stepsContainer"></div>
-        <button type="button" onclick="addStep()">Aggiungi Passaggio</button><br><br>
-
-        <button type="submit">Salva Ricetta</button>
-    </form>
-</div>
+        <form method="post">
+            <label>Nome:</label><input type="text" name="nome" required placeholder="es.: pasta alla norma"><br>
+            <label>Categoria:</label><input type="text" name="categoria" required placeholder="es.: primo, secondo, contorno"><br>
+            <label>Tempo Stimato (minuti):</label><input type="number" name="tempoStimato" required placeholder="es.: 30"><br>
+            <label>Ingredienti:</label><input type="text" name="ingredienti" required placeholder="es.: Pollo(800 g) - rosmarino() - olio extravergine di oliva(30 g) - sale()"><br>
+            <h3>Passaggi</h3>
+            <div id="stepsContainer"></div>
+            <button type="button" onclick="addStep()">Crea nuovo Passaggio</button><br><br>
+            <button type="submit">Salva Ricetta</button>
+        </form>
+    </div>
 </body>
 </html>

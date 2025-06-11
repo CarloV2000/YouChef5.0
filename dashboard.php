@@ -21,24 +21,25 @@ include 'db.php';
 <body>
     <div class ="card">
         <header>
-            <h1>YouChef</h1>
+            <div class="card">
+                <img src="YouChef.jpg" alt="Logo YouChef" style="max-width: 200px; display: block; margin: 0 auto;">
+            </div>
         </header>
         <div class="welcome">
-            <h3>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h3>
-
-        <?php
-            if ($azione === 'esegui') {
-                include 'main.php';
-                include 'nav.php';
-            } elseif ($azione === 'sensori') {
-                include 'nav.php';
-            } elseif ($azione === 'aggiungi') {
-            //echo "<p>Funzionalità in sviluppo: Aggiungere Ricetta</p>";
-                include 'aggiungi_ricetta.php';
-            }
-        ?>
-    <?php include 'footer.php'; ?>
+            <?php
+                if ($azione === 'esegui') {
+                    include 'main.php';
+                    include 'nav.php';
+                    include 'timer.php'; 
+                } elseif ($azione === 'sensori') {
+                    include 'nav.php';
+                    include 'timer.php'; 
+                } elseif ($azione === 'aggiungi') {
+                    include 'aggiungi_ricetta.php';
+                }
+            ?>
+            <?php include 'footer.php'; ?>
+        </div>
     </div>
-</div>
 </body>
 </html>

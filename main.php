@@ -87,7 +87,6 @@ if (isset($_POST['nome'])) {
 
     if ($ricetta) {
         $ricetta_id = $ricetta['id'];
-
         $queryPassaggi = "SELECT * FROM steps WHERE ricetta_id = ? ORDER BY ordine ASC";
         $stmtPassaggi = $pdo->prepare($queryPassaggi);
         $stmtPassaggi->execute([$ricetta_id]);
@@ -98,21 +97,25 @@ if (isset($_POST['nome'])) {
 }
 ?>
 
-<main class="main">
+<main>
+    <div class="card">
     <h2>Selezionare la categoria di ricetta</h2>
 
     <!-- MOSTRA I BOTTONI SOLO SE NON CI SONO PASSAGGI DA MOSTRARE -->
     <?php if (empty($passaggi)): ?>
     <form method="post" style="margin-bottom: 20px;">
-        <label style="border: 1px solid #000; padding: 5px; display: inline-block;">
-            <input type="checkbox" name="soloRicetteCertificate" value="1" <?php echo $soloRicetteCertificate ? 'checked' : ''; ?>>
-            Solo ricette certificate
-        </label>
+        
         <div class="buttons" style="margin-top: 10px;">
             <button name="category" value="primo">Primo</button>
             <button name="category" value="secondo">Secondo</button>
             <button name="category" value="contorno">Contorno</button>
         </div>
+
+        <label style="border: 1px solid #000; padding: 5px; display: inline-block;">
+            <input type="checkbox" name="soloRicetteCertificate" value="1" <?php echo $soloRicetteCertificate ? 'checked' : ''; ?>>
+            Solo ricette certificate
+        </label>
+
     </form>
     <?php endif; ?>
 
@@ -224,4 +227,5 @@ if (isset($_POST['nome'])) {
             </form>
         <?php } ?>
     <?php endif; ?>
+    </div>
 </main>

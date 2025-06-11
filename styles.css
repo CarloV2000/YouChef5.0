@@ -29,41 +29,40 @@ body::before {
   z-index: -1;
 }
 
-
 .error {
   color: #dc3545;
   margin-bottom: 1rem;
 }
 
-
-
 .card {
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 2rem;
   padding: 1.5rem;
   width: 90%;
   max-width: 500px;
   text-align: center;
-  margin-bottom: 1.5rem;
 }
 
 .cardMenu{
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
   width: 95%;
-    max-width: 100%;
-    padding: 1rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-
-    /* Altezza quasi piena pagina */
-    height: 70vh;
-    
-    /* Imposta il layout verticale per il contenuto */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; /* Distribuisce bene i bottoni */
-    align-items: center; /* Centra i bottoni orizzontalmente */
+  max-width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  padding: 1em;
+  /* Imposta il layout verticale per il contenuto */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Distribuisce bene i bottoni */
+  align-items: center; /* Centra i bottoni orizzontalmente */
 }
+
 .cardMenu button {
   background-color: #2e8b47;
   color: #fff;
@@ -87,6 +86,10 @@ body::before {
   transform: scale(1.05); /* Effetto di ingrandimento al passaggio del mouse */
 }
 
+.cardMenu p {
+    margin: 0.5em 0;
+    word-break: break-word;
+}
 
 .nav {
   width: 90%;
@@ -117,8 +120,6 @@ body::before {
   margin-bottom: 1rem;
 }
 
-
-
 input {
   width: 100%;
   padding: 0.5rem;
@@ -127,8 +128,6 @@ input {
   border: 1px solid #ccc;
   border-radius: 0.5rem;
 }
-
-
 
 button {
   background-color: #144d14;
@@ -170,8 +169,6 @@ button:active {
   transform: scale(0.97);
 }
 
-
-
 .h1 {
   background-color: aqua;
   color: #a71d2a;
@@ -179,20 +176,6 @@ button:active {
 }
 
 
-
-.main {
-  width: 90%;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
-  text-align: center;
-  box-sizing: border-box;
-  margin-bottom: 1.5rem;
-
-}
 
 .welcome {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -327,15 +310,11 @@ button:active {
   transform: scale(1.05);
 }
 
-
-
 .ingredienti-scroll {
   max-width: 150px;
   overflow-x: auto;
   white-space: nowrap;
 }
-
-
 
 .status {
   color: black;
@@ -349,9 +328,6 @@ button:active {
 .out-range {
   animation: pulse-red 1.5s infinite;
 }
-
-
-
 
 @keyframes pulse-green {
   0% {
@@ -376,8 +352,6 @@ button:active {
     text-shadow: 0 0 6px #ff0000, 0 0 12px #ff0000, 0 0 18px #ff0000;
   }
 }
-
-
 
 @media (max-width: 600px) {
   .responsive-tableRicette th,
@@ -405,20 +379,14 @@ button:active {
 
 @media (max-width: 767px) {
   .card,
+  .cardMenu,
   .nav,
-  .main,
   .menu {
     width: 95%;
     max-width: 100%;
     padding: 1rem;
     margin: 0 auto;
     box-sizing: border-box;
-    
-    /* Imposta il layout verticale per il contenuto */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly; /* Distribuisce bene i bottoni */
-    align-items: center; /* Centra i bottoni orizzontalmente */
   }
 
   .buttons {
@@ -441,9 +409,5 @@ button:active {
 
   button {
     padding: 0.5rem 0.75rem;
-  }
-
-  .main {
-    padding: 0.75rem;
   }
 }
