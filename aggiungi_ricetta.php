@@ -78,10 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Descrizione:</label><input name="passaggi[${stepCount}][descrizione]" required placeholder="Inserire descrizione precisa"><br>
                 <label>Ordine:</label><input type="number" name="passaggi[${stepCount}][ordine]" required placeholder="ordine passaggi della ricetta inserita"><br>
                 <label>Tempo (min):</label><input type="number" name="passaggi[${stepCount}][tempo]" placeholder="timer da inserire nel passaggio, 0 se non necessario"><br>
-                <label>Temperatura min 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="T(°C) min sensore1, 0 se non necessario"><br>
-                <label>Temperatura max 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="T(°C) max sensore1, 0 se non necessario"><br>
-                <label>Temperatura min 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="T(°C) min sensore2, 0 se non necessario"><br>
-                <label>Temperatura max 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="T(°C) max sensore2, 0 se non necessario"><br>
+                <label>Temperatura min 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="T(°C) min sensore1 (inserire solo il numero!), 0 se non necessario"><br>
+                <label>Temperatura max 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="T(°C) max sensore1 (inserire solo il numero!), 0 se non necessario"><br>
+                <label>Temperatura min 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="T(°C) min sensore2 (inserire solo il numero!), 0 se non necessario"><br>
+                <label>Temperatura max 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="T(°C) max sensore2 (inserire solo il numero!), 0 se non necessario"><br>
                 <label>Timer richiesto:</label>
                 <select name="passaggi[${stepCount}][timerRichiesto]">
                     <option value="0">No</option>
