@@ -24,22 +24,21 @@ include 'db.php';
             <h1>YouChef</h1>
         </header>
         <div class="welcome">
-    <h3>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h3>
+            <h3>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h3>
 
-    <?php
-    if ($azione === 'esegui') {
-        include 'main.php';
-        include 'nav.php';
-    } elseif ($azione === 'sensori') {
-        include 'nav.php';
-    } elseif ($azione === 'aggiungi') {
-        //echo "<p>Funzionalità in sviluppo: Aggiungere Ricetta</p>";
-        include 'aggiungi_ricetta.php';
-    }
-    ?>
+        <?php
+            if ($azione === 'esegui') {
+                include 'main.php';
+                include 'nav.php';
+            } elseif ($azione === 'sensori') {
+                include 'nav.php';
+            } elseif ($azione === 'aggiungi') {
+            //echo "<p>Funzionalità in sviluppo: Aggiungere Ricetta</p>";
+                include 'aggiungi_ricetta.php';
+            }
+        ?>
     <?php include 'footer.php'; ?>
-</div>
-
     </div>
+</div>
 </body>
 </html>

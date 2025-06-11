@@ -24,11 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="card">
-        <h2>Scegli cosa fare:</h2>
+        <h2>MENU</h2>
         <form method="post">
-            <button type="submit" name="azione" value="esegui">Esegui Ricetta</button>
-            <button type="submit" name="azione" value="sensori">Usa solo sensori</button>
-            <button type="submit" name="azione" value="aggiungi">Aggiungi Ricetta</button>
+            <div class="cardMenu">
+                <button type="submit" name="azione" value="esegui">Esegui Ricetta</button>
+                <button type="submit" name="azione" value="sensori">Usa solo sensori</button>
+                <button type="submit" name="azione" value="aggiungi">Aggiungi Ricetta</button>
+             </div>
         </form>
     </div>
 </body>

@@ -2,10 +2,6 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-image: url('SfondoCibo3.jpg');
-  background-size: cover;
-  background-repeat: no-repeat; 
-  background-position: center;
   margin: 0;
   padding: 1rem;
   width: 100vw;
@@ -15,8 +11,23 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('SfondoCibo3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
 
 
 .error {
@@ -37,6 +48,44 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.cardMenu{
+  width: 95%;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    /* Altezza quasi piena pagina */
+    height: 70vh;
+    
+    /* Imposta il layout verticale per il contenuto */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Distribuisce bene i bottoni */
+    align-items: center; /* Centra i bottoni orizzontalmente */
+}
+.cardMenu button {
+  background-color: #2e8b47;
+  color: #fff;
+  margin: 1rem 0;
+  padding: 1.5rem 2rem; /* BOTTONI MOLTO PIÙ GRANDI */
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1.8rem; /* TESTO GRANDE */
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 8px #66bb66,
+    inset 0 0 10px #9fd99f;
+  transition: transform 0.2s ease;
+}
+
+.cardMenu button:hover {
+  transform: scale(1.05); /* Effetto di ingrandimento al passaggio del mouse */
+}
 
 
 .nav {
@@ -364,6 +413,12 @@ button:active {
     padding: 1rem;
     margin: 0 auto;
     box-sizing: border-box;
+    
+    /* Imposta il layout verticale per il contenuto */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Distribuisce bene i bottoni */
+    align-items: center; /* Centra i bottoni orizzontalmente */
   }
 
   .buttons {
