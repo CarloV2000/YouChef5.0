@@ -136,7 +136,7 @@ if (isset($_POST['nome'])) {
                         <td>
                             <form method="post">
                                 <input type="hidden" name="nome" value="<?php echo htmlspecialchars($recipe['nome']); ?>">
-                                <button type="submit">
+                                <button type="submit" className="button">
                                     <?php echo htmlspecialchars($recipe['nome']); ?>
                                 </button>
                             </form>
