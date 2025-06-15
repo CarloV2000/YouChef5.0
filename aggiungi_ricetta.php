@@ -68,34 +68,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8" />
     <title>Aggiungi Ricetta</title>
     <script>
-        let stepCount = 0;
-        function addStep() {
-            stepCount++;
-            const container = document.getElementById("stepsContainer");
-            const stepDiv = document.createElement("div");
-            stepDiv.innerHTML = `
-                <h4>Passaggio ${stepCount}</h4>
-                <label>Descrizione:</label><input name="passaggi[${stepCount}][descrizione]" required placeholder="Inserire descrizione precisa"><br>
-                <label>Ordine:</label><input type="number" name="passaggi[${stepCount}][ordine]" required placeholder="ordine passaggi della ricetta inserita"><br>
-                <label>Tempo (min):</label><input type="number" name="passaggi[${stepCount}][tempo]" placeholder="timer da inserire nel passaggio, 0 se non necessario"><br>
-                <label>Temperatura min 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="T(°C) min sensore1 (inserire solo il numero!), 0 se non necessario"><br>
-                <label>Temperatura max 1:</label><input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="T(°C) max sensore1 (inserire solo il numero!), 0 se non necessario"><br>
-                <label>Temperatura min 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="T(°C) min sensore2 (inserire solo il numero!), 0 se non necessario"><br>
-                <label>Temperatura max 2:</label><input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="T(°C) max sensore2 (inserire solo il numero!), 0 se non necessario"><br>
-                <label>Timer richiesto:</label>
-                <select name="passaggi[${stepCount}][timerRichiesto]">
-                    <option value="0">No</option>
-                    <option value="1">Sì</option>
-                </select><br><br>
-            `;
-            container.appendChild(stepDiv);
+    let stepCount = 0;
+    function addStep() {
+        stepCount++;
+        const container = document.getElementById("stepsContainer");
+        const stepDiv = document.createElement("div");
+
+        // Identificativi unici per ogni step
+        const stepId = `step${stepCount}`;
+        const timerSelectId = `timerSelect${stepCount}`;
+        const tempoDivId = `tempoDiv${stepCount}`;
+        const tempoInputId = `tempoInput${stepCount}`;
+
+        stepDiv.innerHTML = `
+            <h4>Passaggio ${stepCount}</h4>
+            <label>Descrizione:</label>
+            <input name="passaggi[${stepCount}][descrizione]" required placeholder="Inserire descrizione precisa"><br>
+            
+            <label>Ordine:</label>
+            <input type="number" name="passaggi[${stepCount}][ordine]" value="${stepCount}" readonly><br>
+            
+            <label>Timer richiesto:</label>
+            <select name="passaggi[${stepCount}][timerRichiesto]" id="${timerSelectId}" class="select-categoria" onchange="toggleTempo('${tempoDivId}', '${tempoInputId}', this.value)">
+                <option value="1">Sì</option>
+                <option value="0">No</option>
+            </select><br><br>
+            
+            <div id="${tempoDivId}">
+                <label>Tempo (min):</label>
+                <input type="number" id="${tempoInputId}" name="passaggi[${stepCount}][tempo]" placeholder="timer da inserire nel passaggio, 0 se non necessario"><br>
+            </div>
+            
+            <label>Temperatura min 1:</label>
+            <input type="number" name="passaggi[${stepCount}][temperaturamin1]" placeholder="T(°C) min sensore1 (inserire solo il numero!), 0 se non necessario"><br>
+            
+            <label>Temperatura max 1:</label>
+            <input type="number" name="passaggi[${stepCount}][temperaturamax1]" placeholder="T(°C) max sensore1 (inserire solo il numero!), 0 se non necessario"><br>
+            
+            <label>Temperatura min 2:</label>
+            <input type="number" name="passaggi[${stepCount}][temperaturamin2]" placeholder="T(°C) min sensore2 (inserire solo il numero!), 0 se non necessario"><br>
+            
+            <label>Temperatura max 2:</label>
+            <input type="number" name="passaggi[${stepCount}][temperaturamax2]" placeholder="T(°C) max sensore2 (inserire solo il numero!), 0 se non necessario"><br>
+        `;
+
+        container.appendChild(stepDiv);
+    }
+
+    // Funzione per mostrare/nascondere "Tempo (min)" e gestire valore
+    function toggleTempo(tempoDivId, tempoInputId, value) {
+        const tempoDiv = document.getElementById(tempoDivId);
+        const tempoInput = document.getElementById(tempoInputId);
+        if (value === "1") {
+            tempoDiv.style.display = "block";
+        } else {
+            tempoDiv.style.display = "none";
+            tempoInput.value = 0;
         }
-    </script>
+    }
+</script>
+
 </head>
 <body>
     <div class="card">
         <h1>Aggiungi una Nuova Ricetta</h1>
         <h2>Aggiungi Ricetta</h2>
+        <p style="color:red;": >*Si ricorda di seguire il formato degli esempi, per evitare errori nel caricamento delle ricette nel database</p>
         <?php if(!empty($error)): ?>
             <div style="color:red;"><?= $error ?></div>
         <?php endif; ?>
@@ -106,7 +144,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <form method="post">
             <label>Nome:</label><input type="text" name="nome" required placeholder="es.: pasta alla norma"><br>
-            <label>Categoria:</label><input type="text" name="categoria" required placeholder="es.: primo, secondo, contorno"><br>
+            <label>Categoria:</label>
+            <select name="categoria" required class="select-categoria">
+                <option value="">-- Seleziona categoria --</option>
+                <option value="antipasto">antipasto</option>
+                <option value="primo">primo</option>
+                <option value="secondo">secondo</option>
+                <option value="contorno">contorno</option>
+                <option value="dolce">dolce</option>
+            </select><br>
             <label>Tempo Stimato (minuti):</label><input type="number" name="tempoStimato" required placeholder="es.: 30"><br>
             <label>Ingredienti:</label><input type="text" name="ingredienti" required placeholder="es.: Pollo(800 g) - rosmarino() - olio extravergine di oliva(30 g) - sale()"><br>
             <h3>Passaggi</h3>

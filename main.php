@@ -106,9 +106,12 @@ if (isset($_POST['nome'])) {
     <form method="post" style="margin-bottom: 20px;">
         
         <div class="buttons" style="margin-top: 10px;">
+            <button name="category" value="antipasto">Antipasto</button>
             <button name="category" value="primo">Primo</button>
             <button name="category" value="secondo">Secondo</button>
             <button name="category" value="contorno">Contorno</button>
+            <button name="category" value="dolce">Dolce</button>
+            
         </div>
 
         <label style="border: 1px solid #000; padding: 5px; display: inline-block;">

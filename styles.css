@@ -22,12 +22,13 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('SfondoCibo3.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   z-index: -1;
+  transition: background-image 1s ease-in-out;
 }
+
 
 .error {
   color: #dc3545;
@@ -387,6 +388,18 @@ button:active {
 
 .out-range {
   animation: pulse-red 1.5s infinite;
+}
+
+.select-categoria {
+  font-size: 1.1rem;         /* ingrandisce il testo */
+  padding: 8px 12px;         /* padding interno */
+  margin: 16px 0;            /* spazio sopra e sotto */
+  width: 100%;               /* occupa tutta la larghezza disponibile, se desiderato */
+  max-width: 100%;          /* limita la larghezza massima */
+  box-sizing: border-box;    /* include padding e bordo nel calcolo della larghezza */
+  border: 2px solid #d9d9d9;/* bordo grigio medio */
+  border-radius: 6px;          /* angoli leggermente arrotondati */
+  background-color: #fff;      /* sfondo bianco */
 }
 
 @keyframes pulse-green {

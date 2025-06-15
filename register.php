@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = trim($_POST['password']);
     $confirm_password = trim($_POST['confirm_password']);
 
-    // Validate inputs
     if (empty($username) || empty($email) || empty($password)) {
         $error = 'All fields are required.';
     } elseif ($password !== $confirm_password) {
@@ -16,17 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (strlen($password) < 8) {
         $error = 'Password must be at least 8 characters long.';
     } else {
-        // Check if username or email already exists
         $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
         $stmt->execute([$username, $email]);
-        
         if ($stmt->rowCount() > 0) {
             $error = 'Username or email already exists.';
         } else {
-            // Hash the password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
-            // Insert new user
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
             if ($stmt->execute([$username, $email, $hashed_password])) {
                 header('Location: login.php?registered=1');
@@ -46,8 +40,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .background.active {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Sfondo dinamico -->
+    <div id="background1" class="background"></div>
+    <div id="background2" class="background"></div>
+
     <div class="card">
         <h2>Register</h2>
         <?php if ($error): ?>
@@ -74,5 +91,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
         <p>Already have an account? <a href="login.php">Login here</a>.</p>
     </div>
+
+    <script>
+        const backgrounds = [
+            'zzzsfondoPaesaggio.jpg',
+            'zzzsfondoCibo3.jpg',
+            'zzzsfondo13.jpg',
+            'zzzsfondo15.jpg'
+        ];
+
+        let index = 1; // inizia dal secondo sfondo
+        let current = 0;
+
+        const bgDivs = [
+            document.getElementById('background1'),
+            document.getElementById('background2')
+        ];
+
+        window.onload = () => {
+            // Imposta subito il primo sfondo
+            bgDivs[0].style.backgroundImage = `url('${backgrounds[0]}')`;
+            bgDivs[0].classList.add('active');
+
+            // Avvia la rotazione dopo 5 secondi
+            setTimeout(() => {
+                setInterval(changeBackground, 9000);
+            }, 5000);
+        };
+
+        function changeBackground() {
+            const next = (current + 1) % 2;
+            const image = `url('${backgrounds[index]}')`;
+
+            bgDivs[next].style.backgroundImage = image;
+            bgDivs[next].classList.add('active');
+            bgDivs[current].classList.remove('active');
+
+            current = next;
+            index = (index + 1) % backgrounds.length;
+            }
+    </script>
+
 </body>
 </html>
